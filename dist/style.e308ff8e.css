@@ -1,0 +1,16 @@
+body {
+    margin: 0;
+    padding: 0;
+}
+
+#canvas {
+    display:block;
+    background-color: aliceblue;
+    width: 100vw;
+    height: auto;
+    margin: 0px;
+    padding: 0px;
+    border: 1px solid;
+}
+
+/*# sourceMappingURL=/style.e308ff8e.css.map */
