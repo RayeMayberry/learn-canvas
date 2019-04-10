@@ -1,5 +1,13 @@
-var canvas = document.querySelector('#canvas');
+function main () {
+    const canvas = document.querySelector('#canvas');
 
-var context = canvas.getContext('2d');
+const context = canvas.getContext('webgl');
+console.log(context);
+// getContext is a built in function with the canvas
 
-context.fillRect(10, 10, 20, 30);
+    if (context === null){
+        alert("Could not initialize WebGL. Your browser or device may not support it.")
+    }
+}
+
+main();

@@ -118,10 +118,18 @@ parcelRequire = (function (modules, cache, entry, globalName) {
 
   return newRequire;
 })({"index.js":[function(require,module,exports) {
-var canvas = document.querySelector('#canvas');
-var context = canvas.getContext('2d');
-context.fillRect(10, 10, 20, 30);
-},{}],"../../.npm/_npx/9335/lib/node_modules/parcel/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+function main() {
+  var canvas = document.querySelector('#canvas');
+  var context = canvas.getContext('webgl');
+  console.log(context); // getContext is a built in function with the canvas
+
+  if (context === null) {
+    alert("Could not initialize WebGL. Your browser or device may not support it.");
+  }
+}
+
+main();
+},{}],"../../AppData/Roaming/npm-cache/_npx/17080/node_modules/parcel/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;
@@ -149,7 +157,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "39173" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "49931" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
@@ -324,5 +332,5 @@ function hmrAcceptRun(bundle, id) {
     return true;
   }
 }
-},{}]},{},["../../.npm/_npx/9335/lib/node_modules/parcel/src/builtins/hmr-runtime.js","index.js"], null)
-//# sourceMappingURL=/learn-canvas-webgl.e31bb0bc.js.map
+},{}]},{},["../../AppData/Roaming/npm-cache/_npx/17080/node_modules/parcel/src/builtins/hmr-runtime.js","index.js"], null)
+//# sourceMappingURL=/learn-canvas-webGL.e31bb0bc.js.map
