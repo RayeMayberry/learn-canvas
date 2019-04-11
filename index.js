@@ -1,22 +1,13 @@
-const canvas = document.querySelector('#canvas');
-const context = canvas.getContext('2d');
+window.onload = function(){
+    var canvas = document.querySelector('#canvas');
+    var context = canvas.getContext('2d');
+    canvas.width = 300;
+    canvas.height = 400;
+    var sprite = new Image();
 
-var birdSpriteSheet = new Image();
-birdSpriteSheet.src = "./bird_2_black.png";
+    sprite.onload = function() {
+        context.drawImage(sprite, 0,0);
+    }
 
-function sprite(options){
-    var that = {};
-    that.context = options.context;
-    that.width = options.width;
-    that.height = options.height;
-    that.image = options.image;
-
-    return that;
+    sprite.src = './bird_2_black.png';
 }
-
-var bird = sprite({
-    context: context,
-    width: 32,
-    height: 32,
-    image: birdSpriteSheet
-});

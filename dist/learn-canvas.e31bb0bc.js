@@ -118,26 +118,19 @@ parcelRequire = (function (modules, cache, entry, globalName) {
 
   return newRequire;
 })({"index.js":[function(require,module,exports) {
-var canvas = document.querySelector('#canvas');
-var context = canvas.getContext('2d');
-var birdSpriteSheet = new Image();
-birdSpriteSheet.src = "./bird_2_black.png";
+window.onload = function () {
+  var canvas = document.querySelector('#canvas');
+  var context = canvas.getContext('2d');
+  canvas.width = 300;
+  canvas.height = 400;
+  var sprite = new Image();
 
-function sprite(options) {
-  var that = {};
-  that.context = options.context;
-  that.width = options.width;
-  that.height = options.height;
-  that.image = options.image;
-  return that;
-}
+  sprite.onload = function () {
+    context.drawImage(sprite, 0, 0);
+  };
 
-var bird = sprite({
-  context: context,
-  width: 32,
-  height: 32,
-  image: birdSpriteSheet
-});
+  sprite.src = './bird_2_black.png';
+};
 },{}],"../../AppData/Roaming/npm-cache/_npx/2404/node_modules/parcel/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
