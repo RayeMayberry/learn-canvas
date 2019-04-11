@@ -120,6 +120,17 @@ parcelRequire = (function (modules, cache, entry, globalName) {
 })({"index.js":[function(require,module,exports) {
 var canvas = document.querySelector('#canvas');
 var context = canvas.getContext('2d');
+console.log(context);
+context.fillStyle = "blue";
+context.fillRect(10, 10, 100, 100);
+context.beginPath();
+context.moveTo(150, 20);
+context.lineTo(250, 50);
+context.stroke();
+context.beginPath();
+context.arc(200, 100, 45, 0, Math.PI * 2, false);
+context.strokeStyle = "red";
+context.stroke();
 },{}],"../../AppData/Roaming/npm-cache/_npx/2404/node_modules/parcel/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
