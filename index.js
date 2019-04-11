@@ -16,3 +16,13 @@ context.beginPath();
 context.arc(200, 100, 45, 0, Math.PI * 2, false);
 context.strokeStyle = "red";
 context.stroke();
+
+context.beginPath();
+context.arc(130, 60, 45, 0, Math.PI / 2, false);
+context.strokeStyle = "red";
+context.stroke();
+
+context.beginPath();
+context.arc(150, 80, 45, 0, Math.PI / 2, true);
+context.strokeStyle = "red";
+context.stroke();

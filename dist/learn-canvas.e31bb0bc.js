@@ -131,6 +131,14 @@ context.beginPath();
 context.arc(200, 100, 45, 0, Math.PI * 2, false);
 context.strokeStyle = "red";
 context.stroke();
+context.beginPath();
+context.arc(130, 60, 45, 0, Math.PI / 2, false);
+context.strokeStyle = "red";
+context.stroke();
+context.beginPath();
+context.arc(150, 80, 45, 0, Math.PI / 2, true);
+context.strokeStyle = "red";
+context.stroke();
 },{}],"../../AppData/Roaming/npm-cache/_npx/2404/node_modules/parcel/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
