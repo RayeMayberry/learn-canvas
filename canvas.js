@@ -1,9 +1,15 @@
+import bird_2_black from './bird_2_black.png';
+
 const canvas = document.querySelector('#canvas');
 const ctx = canvas.getContext('2d');
 canvas.width = 32 * 12;
 canvas.height = 32 * 8;
+
 const blackBirdImg = new Image();
-blackBirdImg.src = './bird_2_black.png';
+blackBirdImg.src = bird_2_black;
+
+// const forestTiles = new Image();
+// forestTiles.src = './forest_tiles.png';
 
 class Sprite {
     constructor(src, width, height, position, frames, cycles) {
@@ -69,6 +75,10 @@ class Sprite {
         return this;
     }
 };
+
+class Tile {
+    constructor(){}
+}
 
 function main() {
 
