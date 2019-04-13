@@ -9,7 +9,7 @@ window.onload = function(){
     // sprite width & height can also be used to iterate thru the spritesheet
     const width = 32;
     const height = 32;
-    const scale = 1.5;
+    const scale = 1;
     // cx & cy = context x & y coordinates
     var cx = canvas.width - (width*scale);
     var cy = 0;
