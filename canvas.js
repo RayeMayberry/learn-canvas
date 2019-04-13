@@ -18,8 +18,7 @@ tileset.src = tileset_c_1;
 
 window.onload = function () {
    var grass = new Tile(tileset, [0,0],32);
-   grass.fillArea([canvas.width, canvas.height]);
-   
+   grass.render([0,0]);
     var bird = new Sprite(blackBirdImg, 32, 32, [0, 0], 3, 8);
 
     // bird.animate(5).fly('down', [100, 200], 5);

@@ -1,7 +1,5 @@
-import Tile from './Tile.js'
 const canvas = document.querySelector('#canvas');
 const ctx = canvas.getContext('2d');
-
 
 export default class {
     constructor(src, width, height, position, frames, cycles) {
@@ -23,7 +21,6 @@ export default class {
             ctx.clearRect(
                 this.position[0], this.position[1], this.width, this.height
             );
-            ctx.drawImage(Tile.bgCtx.canvas, 0,0)
             ctx.drawImage(
                 this.src,
                 this.index[0],

@@ -117,73 +117,13 @@ parcelRequire = (function (modules, cache, entry, globalName) {
   }
 
   return newRequire;
-})({"Tile.js":[function(require,module,exports) {
+})({"Sprite.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.default = void 0;
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
-
-function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
-
-var canvas = document.querySelector('#canvas');
-var ctx = canvas.getContext('2d');
-
-var _default =
-/*#__PURE__*/
-function () {
-  function _default(src, index, size) {
-    _classCallCheck(this, _default);
-
-    this.src = src;
-    this.index = index;
-    this.size = size;
-  }
-
-  _createClass(_default, [{
-    key: "render",
-    value: function render(position) {
-      ctx.drawImage(this.src, this.index[0], this.index[1], this.size, this.size, position[0], position[1], this.size, this.size);
-      return this;
-    }
-  }, {
-    key: "fillArea",
-    value: function fillArea(area) {
-      var x = 0;
-      var y = 0;
-
-      while (y <= area[1]) {
-        while (x <= area[0]) {
-          this.render([x, y]);
-          x += this.size;
-        }
-
-        x = 0;
-        y += this.size;
-      }
-    }
-  }]);
-
-  return _default;
-}();
-
-exports.default = _default;
-},{}],"Sprite.js":[function(require,module,exports) {
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = void 0;
-
-var _Tile = _interopRequireDefault(require("./Tile.js"));
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -219,7 +159,6 @@ function () {
       setInterval(function () {
         _this.index[0] = i * _this.width;
         ctx.clearRect(_this.position[0], _this.position[1], _this.width, _this.height);
-        ctx.drawImage(_Tile.default.bgCtx.canvas, 0, 0);
         ctx.drawImage(_this.src, _this.index[0], _this.index[1] * _this.height, _this.width, _this.height, _this.position[0], _this.position[1], _this.width, _this.height);
         i++;
 
@@ -268,7 +207,50 @@ function () {
 
 exports.default = _default;
 ;
-},{"./Tile.js":"Tile.js"}],"bird_2_black.png":[function(require,module,exports) {
+},{}],"Tile.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+var canvas = document.querySelector('#canvas');
+var ctx = canvas.getContext('2d');
+
+var _default =
+/*#__PURE__*/
+function () {
+  function _default(src, index, size) {
+    _classCallCheck(this, _default);
+
+    this.src = src;
+    this.index = index;
+    this.size = size;
+  }
+
+  _createClass(_default, [{
+    key: "render",
+    value: function render(position) {
+      ctx.drawImage(this.src, this.index[0], this.index[1], this.size, this.size, position[0], position[1], this.size, this.size);
+      return this;
+    }
+  }, {
+    key: "fillArea",
+    value: function fillArea(area) {}
+  }]);
+
+  return _default;
+}();
+
+exports.default = _default;
+},{}],"bird_2_black.png":[function(require,module,exports) {
 module.exports = "/bird_2_black.c20070b1.png";
 },{}],"tileset_c_1.png":[function(require,module,exports) {
 module.exports = "/tileset_c_1.66b6eb86.png";
@@ -296,7 +278,7 @@ tileset.src = _tileset_c_.default;
 
 window.onload = function () {
   var grass = new _Tile.default(tileset, [0, 0], 32);
-  grass.fillArea([canvas.width, canvas.height]);
+  grass.render([0, 0]);
   var bird = new _Sprite.default(blackBirdImg, 32, 32, [0, 0], 3, 8); // bird.animate(5).fly('down', [100, 200], 5);
 };
 },{"./Sprite.js":"Sprite.js","./Tile.js":"Tile.js","./bird_2_black.png":"bird_2_black.png","./tileset_c_1.png":"tileset_c_1.png"}],"node_modules/parcel/src/builtins/hmr-runtime.js":[function(require,module,exports) {
