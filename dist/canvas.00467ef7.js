@@ -207,42 +207,81 @@ function () {
 
 exports.default = _default;
 ;
+},{}],"Tile.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+var canvas = document.querySelector('#canvas');
+var ctx = canvas.getContext('2d');
+
+var _default =
+/*#__PURE__*/
+function () {
+  function _default(src, index, size) {
+    _classCallCheck(this, _default);
+
+    this.src = src;
+    this.index = index;
+    this.size = size;
+  }
+
+  _createClass(_default, [{
+    key: "render",
+    value: function render(position) {
+      ctx.drawImage(this.src, this.index[0], this.index[1], this.size, this.size, position[0], position[1], this.size, this.size);
+      return this;
+    }
+  }, {
+    key: "fillArea",
+    value: function fillArea(area) {}
+  }]);
+
+  return _default;
+}();
+
+exports.default = _default;
 },{}],"bird_2_black.png":[function(require,module,exports) {
 module.exports = "/bird_2_black.c20070b1.png";
-},{}],"forest_tiles.png":[function(require,module,exports) {
-module.exports = "/forest_tiles.529fd035.png";
+},{}],"tileset_c_1.png":[function(require,module,exports) {
+module.exports = "/tileset_c_1.66b6eb86.png";
 },{}],"canvas.js":[function(require,module,exports) {
 "use strict";
 
 var _Sprite = _interopRequireDefault(require("./Sprite.js"));
 
+var _Tile = _interopRequireDefault(require("./Tile.js"));
+
 var _bird_2_black = _interopRequireDefault(require("./bird_2_black.png"));
 
-var _forest_tiles = _interopRequireDefault(require("./forest_tiles.png"));
+var _tileset_c_ = _interopRequireDefault(require("./tileset_c_1.png"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
 var canvas = document.querySelector('#canvas');
+var ctx = canvas.getContext('2d');
 canvas.width = 32 * 12;
 canvas.height = 32 * 8;
 var blackBirdImg = new Image();
 blackBirdImg.src = _bird_2_black.default;
-var forestTilesImg = new Image();
-forestTilesImg.src = _forest_tiles.default;
+var tileset = new Image();
+tileset.src = _tileset_c_.default;
 
-var Tile = function Tile() {
-  _classCallCheck(this, Tile);
+window.onload = function () {
+  var grass = new _Tile.default(tileset, [0, 0], 32);
+  grass.render([0, 0]);
+  var bird = new _Sprite.default(blackBirdImg, 32, 32, [0, 0], 3, 8); // bird.animate(5).fly('down', [100, 200], 5);
 };
-
-function main() {
-  var bird = new _Sprite.default(blackBirdImg, 32, 32, [0, 0], 3, 8);
-  bird.animate(5).fly('down', [100, 200], 5);
-}
-
-window.onload = main();
-},{"./Sprite.js":"Sprite.js","./bird_2_black.png":"bird_2_black.png","./forest_tiles.png":"forest_tiles.png"}],"node_modules/parcel/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+},{"./Sprite.js":"Sprite.js","./Tile.js":"Tile.js","./bird_2_black.png":"bird_2_black.png","./tileset_c_1.png":"tileset_c_1.png"}],"node_modules/parcel/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;
