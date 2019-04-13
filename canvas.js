@@ -43,7 +43,7 @@ window.onload = function () {
             }, 1000 / framerate);
         }
 
-        fly(direction, distance, speed) {
+        fly(direction,distance) {
             if (direction === 'left') {
                 this.index[1] = 0;
             }
@@ -57,7 +57,15 @@ window.onload = function () {
                 this.index[1] = 3;
             }
 
-            
+            setInterval(
+                ()=>{
+                    if(this.position[1] < distance) {
+                        this.position[1] ++;
+                        console.log(this.position)
+                    }
+                }, 1000
+            )
+
         }
     };
 
@@ -65,6 +73,5 @@ window.onload = function () {
     var bird = new Sprite(blackBirdImg, 32, 32, [0, 0], 3, 8);
 
     bird.animate(5);
-    // bird.fly('down', 10, 2);
-
+    bird.fly('down', 20);
 }
