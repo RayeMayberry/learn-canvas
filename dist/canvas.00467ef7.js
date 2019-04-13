@@ -124,89 +124,92 @@ function _defineProperties(target, props) { for (var i = 0; i < props.length; i+
 
 function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
 
-window.onload = function () {
-  var canvas = document.querySelector('#canvas');
-  var ctx = canvas.getContext('2d');
-  canvas.width = 32 * 12;
-  canvas.height = 32 * 8;
-  var blackBirdImg = new Image();
-  blackBirdImg.src = './bird_2_black.png';
+var canvas = document.querySelector('#canvas');
+var ctx = canvas.getContext('2d');
+canvas.width = 32 * 12;
+canvas.height = 32 * 8;
+var blackBirdImg = new Image();
+blackBirdImg.src = './bird_2_black.png';
 
-  var Sprite =
-  /*#__PURE__*/
-  function () {
-    function Sprite(src, width, height, position, frames, cycles) {
-      _classCallCheck(this, Sprite);
+var Sprite =
+/*#__PURE__*/
+function () {
+  function Sprite(src, width, height, position, frames, cycles) {
+    _classCallCheck(this, Sprite);
 
-      this.src = src;
-      this.width = width;
-      this.height = height;
-      this.index = [0, 0]; // x = frame, y = cycle
+    this.src = src;
+    this.width = width;
+    this.height = height;
+    this.index = [0, 0]; // x = frame, y = cycle
 
-      this.position = position;
-      this.frames = frames;
-      this.cycles = cycles;
+    this.position = position;
+    this.frames = frames;
+    this.cycles = cycles;
+  }
+
+  _createClass(Sprite, [{
+    key: "animate",
+    value: function animate(framerate) {
+      var _this = this;
+
+      var i = 0;
+      setInterval(function () {
+        _this.index[0] = i * _this.width;
+        ctx.clearRect(_this.position[0], _this.position[1], _this.width, _this.height);
+        ctx.drawImage(_this.src, _this.index[0], _this.index[1] * _this.height, _this.width, _this.height, _this.position[0], _this.position[1], _this.width, _this.height);
+        i++;
+
+        if (i === 3) {
+          i = 0;
+        }
+      }, 1000 / framerate);
+      return this;
     }
+  }, {
+    key: "fly",
+    value: function fly(direction, distance, speed) {
+      var _this2 = this;
 
-    _createClass(Sprite, [{
-      key: "animate",
-      value: function animate(framerate) {
-        var _this = this;
-
-        var i = 0;
-        setInterval(function () {
-          _this.index[0] = i * _this.width;
-          ctx.clearRect(_this.position[0], _this.position[1], _this.width, _this.height);
-          ctx.drawImage(_this.src, _this.index[0], _this.index[1] * _this.height, _this.width, _this.height, _this.position[0], _this.position[1], _this.width, _this.height);
-          i++;
-
-          if (i === 3) {
-            i = 0;
-          }
-        }, 1000 / framerate);
+      if (direction === 'left') {
+        this.index[1] = 0;
       }
-    }, {
-      key: "fly",
-      value: function fly(direction, distance, speed) {
-        var _this2 = this;
 
-        if (direction === 'left') {
-          this.index[1] = 0;
-        }
-
-        if (direction === 'up') {
-          this.index[1] = 1;
-        }
-
-        if (direction === 'down') {
-          this.index[1] = 2;
-        }
-
-        if (direction === 'right') {
-          this.index[1] = 3;
-        }
-
-        var x = 0;
-
-        while (x <= distance) {
-          setInterval(function () {
-            ctx.clearRect(_this2.position[0], _this2.position[1], _this2.width, _this2.height);
-            _this2.position[0]++;
-            _this2.position[1]++;
-            x++;
-          }, 1000 / speed);
-        }
+      if (direction === 'up') {
+        this.index[1] = 1;
       }
-    }]);
 
-    return Sprite;
-  }();
+      if (direction === 'down') {
+        this.index[1] = 2;
+      }
 
-  ;
+      if (direction === 'right') {
+        this.index[1] = 3;
+      }
+
+      setInterval(function () {
+        if (_this2.position[0] < distance[0]) {
+          _this2.position[0]++;
+        }
+
+        if (_this2.position[1] < distance[1]) {
+          _this2.position[1]++;
+        }
+      }, 1000 / speed);
+      return this;
+    }
+  }]);
+
+  return Sprite;
+}();
+
+;
+
+function main() {
   var bird = new Sprite(blackBirdImg, 32, 32, [0, 0], 3, 8);
-  bird.animate(5);
-  bird.fly('down', 10, 2);
-};
+  bird.animate(5).fly('down', [100, 200], 5);
+}
+
+window.onload = main();
 },{}],"node_modules/parcel/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
@@ -235,7 +238,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "42267" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "38241" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
