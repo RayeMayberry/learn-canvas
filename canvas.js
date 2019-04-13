@@ -64,7 +64,6 @@ window.onload = function () {
                     }
                     if(this.position[1] < distance[1]) {
                         this.position[1] ++;
-                        console.log(this.position)
                     }
                 }, 1000 / speed
             )
@@ -76,5 +75,5 @@ window.onload = function () {
     var bird = new Sprite(blackBirdImg, 32, 32, [0, 0], 3, 8);
 
     bird.animate(5);
-    bird.fly('down', [10,20], 2);
+    bird.fly('down', [100,200], 5);
 }
