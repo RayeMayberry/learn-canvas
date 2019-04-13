@@ -117,14 +117,13 @@ parcelRequire = (function (modules, cache, entry, globalName) {
   }
 
   return newRequire;
-})({"bird_2_black.png":[function(require,module,exports) {
-module.exports = "/bird_2_black.c20070b1.png";
-},{}],"canvas.js":[function(require,module,exports) {
+})({"Sprite.js":[function(require,module,exports) {
 "use strict";
 
-var _bird_2_black = _interopRequireDefault(require("./bird_2_black.png"));
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -134,17 +133,12 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
 
 var canvas = document.querySelector('#canvas');
 var ctx = canvas.getContext('2d');
-canvas.width = 32 * 12;
-canvas.height = 32 * 8;
-var blackBirdImg = new Image();
-blackBirdImg.src = _bird_2_black.default; // const forestTiles = new Image();
-// forestTiles.src = './forest_tiles.png';
 
-var Sprite =
+var _default =
 /*#__PURE__*/
 function () {
-  function Sprite(src, width, height, position, frames, cycles) {
-    _classCallCheck(this, Sprite);
+  function _default(src, width, height, position, frames, cycles) {
+    _classCallCheck(this, _default);
 
     this.src = src;
     this.width = width;
@@ -156,7 +150,7 @@ function () {
     this.cycles = cycles;
   }
 
-  _createClass(Sprite, [{
+  _createClass(_default, [{
     key: "animate",
     value: function animate(framerate) {
       var _this = this;
@@ -208,22 +202,47 @@ function () {
     }
   }]);
 
-  return Sprite;
+  return _default;
 }();
 
+exports.default = _default;
 ;
+},{}],"bird_2_black.png":[function(require,module,exports) {
+module.exports = "/bird_2_black.c20070b1.png";
+},{}],"forest_tiles.png":[function(require,module,exports) {
+module.exports = "/forest_tiles.529fd035.png";
+},{}],"canvas.js":[function(require,module,exports) {
+"use strict";
+
+var _Sprite = _interopRequireDefault(require("./Sprite.js"));
+
+var _bird_2_black = _interopRequireDefault(require("./bird_2_black.png"));
+
+var _forest_tiles = _interopRequireDefault(require("./forest_tiles.png"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+var canvas = document.querySelector('#canvas');
+canvas.width = 32 * 12;
+canvas.height = 32 * 8;
+var blackBirdImg = new Image();
+blackBirdImg.src = _bird_2_black.default;
+var forestTilesImg = new Image();
+forestTilesImg.src = _forest_tiles.default;
 
 var Tile = function Tile() {
   _classCallCheck(this, Tile);
 };
 
 function main() {
-  var bird = new Sprite(blackBirdImg, 32, 32, [0, 0], 3, 8);
+  var bird = new _Sprite.default(blackBirdImg, 32, 32, [0, 0], 3, 8);
   bird.animate(5).fly('down', [100, 200], 5);
 }
 
 window.onload = main();
-},{"./bird_2_black.png":"bird_2_black.png"}],"node_modules/parcel/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+},{"./Sprite.js":"Sprite.js","./bird_2_black.png":"bird_2_black.png","./forest_tiles.png":"forest_tiles.png"}],"node_modules/parcel/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;
