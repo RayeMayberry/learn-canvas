@@ -2,14 +2,14 @@ const canvas = document.querySelector('#canvas');
 const ctx = canvas.getContext('2d');
 
 export default class {
-    constructor(src, index, size){
+    constructor(src, index, size) {
         this.src = src;
         this.index = index;
         this.size = size;
     }
-    render(position){
+    render(position) {
         ctx.drawImage(
-            this.src, 
+            this.src,
             this.index[0],
             this.index[1],
             this.size,
@@ -21,7 +21,16 @@ export default class {
         )
         return this;
     }
-    fillArea(area){
-
+    fillArea(area) {
+        let x = 0;
+        let y = 0;
+        while(y <area[1]){
+            while (x < area[0]) {
+                this.render([x, y]);
+                x += this.size;
+            }
+            x = 0;
+            y += this.size;
+        }
     }
 }

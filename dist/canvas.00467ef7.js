@@ -243,7 +243,20 @@ function () {
     }
   }, {
     key: "fillArea",
-    value: function fillArea(area) {}
+    value: function fillArea(area) {
+      var x = 0;
+      var y = 0;
+
+      while (y < area[1]) {
+        while (x < area[0]) {
+          this.render([x, y]);
+          x += this.size;
+        }
+
+        x = 0;
+        y += this.size;
+      }
+    }
   }]);
 
   return _default;
@@ -278,7 +291,7 @@ tileset.src = _tileset_c_.default;
 
 window.onload = function () {
   var grass = new _Tile.default(tileset, [0, 0], 32);
-  grass.render([0, 0]);
+  grass.fillArea([canvas.width, canvas.height]);
   var bird = new _Sprite.default(blackBirdImg, 32, 32, [0, 0], 3, 8); // bird.animate(5).fly('down', [100, 200], 5);
 };
 },{"./Sprite.js":"Sprite.js","./Tile.js":"Tile.js","./bird_2_black.png":"bird_2_black.png","./tileset_c_1.png":"tileset_c_1.png"}],"node_modules/parcel/src/builtins/hmr-runtime.js":[function(require,module,exports) {
@@ -309,7 +322,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "40135" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "37361" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
