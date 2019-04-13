@@ -137,17 +137,10 @@ window.onload = function () {
   var sy = 0;
 
   blackBirdImg.onload = function () {
-    var i = 0;
-    setInterval(function () {
-      sx = i * width;
+    for (i = 0; i < 3; i++) {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
-      ctx.drawImage(blackBirdImg, sx, sy, width, height, cx, cy, width * scale, height * scale);
-      i++;
-
-      if (i === 3) {
-        i = 0;
-      }
-    }, 200);
+      ctx.drawImage(blackBirdImg, i * width, sy, width, height, cx, cy, width * scale, height * scale);
+    }
   };
 };
 },{}],"node_modules/parcel/src/builtins/hmr-runtime.js":[function(require,module,exports) {
