@@ -57,20 +57,7 @@ window.onload = function () {
                 this.index[1] = 3;
             }
 
-            let x = 0;
-            while (x <= distance) {
-                setInterval(() => {
-                    ctx.clearRect(
-                        this.position[0], this.position[1], this.width, this.height
-                    );
-
-                    this.position[0]++;
-                    this.position[1]++;
-                    x++;
-
-                }, 1000 / speed);
-                return x;
-            }
+            
         }
     };
 
@@ -78,6 +65,6 @@ window.onload = function () {
     var bird = new Sprite(blackBirdImg, 32, 32, [0, 0], 3, 8);
 
     bird.animate(5);
-    bird.fly('down', 100, 2);
+    // bird.fly('down', 10, 2);
 
 }

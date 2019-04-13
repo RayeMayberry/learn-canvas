@@ -195,7 +195,6 @@ window.onload = function () {
             _this2.position[1]++;
             x++;
           }, 1000 / speed);
-          return x;
         }
       }
     }]);
@@ -206,7 +205,7 @@ window.onload = function () {
   ;
   var bird = new Sprite(blackBirdImg, 32, 32, [0, 0], 3, 8);
   bird.animate(5);
-  bird.fly('down', 100, 2);
+  bird.fly('down', 10, 2);
 };
 },{}],"node_modules/parcel/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
