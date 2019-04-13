@@ -1,8 +1,6 @@
 import Sprite from './Sprite.js';
 import Tile from './Tile.js';
-
-import bird_2_black from './bird_2_black.png';
-import tileset_c_1 from './tileset_c_1.png';
+import * as Assets from './assets';
 
 const canvas = document.querySelector('#canvas');
 const ctx = canvas.getContext('2d');
@@ -11,16 +9,33 @@ canvas.width = 32 * 12;
 canvas.height = 32 * 8;
 
 const blackBirdImg = new Image();
-blackBirdImg.src = bird_2_black;
+blackBirdImg.src = Assets.blackBirdSpriteSheet;
 
 const tileset = new Image();
-tileset.src = tileset_c_1;
+tileset.src = Assets.backGroundTileSet;
 
-window.onload = function () {
-   var grass = new Tile(tileset, [0,0],32);
-    grass.fillArea([canvas.width, canvas.height]);
+var grass = new Tile(tileset, [0, 0], 32);
 
-    var bird = new Sprite(blackBirdImg, 32, 32, [0, 0], 3, 8);
+var bird = new Sprite(blackBirdImg, 32, 32, [0, 0], 3, 8);
 
-    // bird.animate(5).fly('down', [100, 200], 5);
+let frameCount = 0;
+function update() {
+    //need a loop that updates animation frames, movement, & redraws background
+    frameCount ++;
+    if (frameCount < 15){
+        window.requestAnimationFrame(update);
+        return;
+    }
+    frameCount = 0;
+    main();
+   
 }
+
+function main() {
+    grass.fillCanvas();
+    bird.render();
+    
+    update();
+}
+
+window.onload = main();

@@ -21,11 +21,11 @@ export default class {
         )
         return this;
     }
-    fillArea(area) {
+    fillCanvas() {
         let x = 0;
         let y = 0;
-        while(y <area[1]){
-            while (x < area[0]) {
+        while(y < canvas.height){
+            while (x < canvas.width) {
                 this.render([x, y]);
                 x += this.size;
             }

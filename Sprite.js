@@ -12,57 +12,24 @@ export default class {
         this.cycles = cycles;
     }
 
-    animate(framerate) {
-        let i = 0;
-        setInterval(() => {
-
-            this.index[0] = i * this.width;
-
-            ctx.clearRect(
-                this.position[0], this.position[1], this.width, this.height
+    render() {
+        ctx.drawImage(
+            this.src,
+            this.index[0]* this.height,
+            this.index[1] ,
+            this.width, 
+            this.height,
+            this.position[0],
+            this.position[1],
+            this.width,
+            this.height
             );
-            ctx.drawImage(
-                this.src,
-                this.index[0],
-                this.index[1] * this.height,
-                this.width, 
-                this.height,
-                this.position[0],
-                this.position[1],
-                this.width,
-                this.height);
-            i++;
-            if (i === 3) {
-                i = 0;
+            this.index[0]++;
+            if (this.index[0] >= 3) {
+                this.index[0] = 0;
             }
-        }, 1000 / framerate);
-        return this;
+            return this;
+                                                            
     }
 
-    fly(direction, distance, speed) {
-        if (direction === 'left') {
-            this.index[1] = 0;
-        }
-        if (direction === 'up') {
-            this.index[1] = 1;
-        }
-        if (direction === 'down') {
-            this.index[1] = 2;
-        }
-        if (direction === 'right') {
-            this.index[1] = 3;
-        }
-
-        setInterval(
-            () => {
-                if (this.position[0] < distance[0]) {
-                    this.position[0]++;
-                }
-                if (this.position[1] < distance[1]) {
-                    this.position[1]++;
-                }
-            }, 1000 / speed
-        )
-        return this;
-    }
 };

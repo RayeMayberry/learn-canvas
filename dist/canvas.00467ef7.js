@@ -151,53 +151,15 @@ function () {
   }
 
   _createClass(_default, [{
-    key: "animate",
-    value: function animate(framerate) {
-      var _this = this;
+    key: "render",
+    value: function render() {
+      ctx.drawImage(this.src, this.index[0] * this.height, this.index[1], this.width, this.height, this.position[0], this.position[1], this.width, this.height);
+      this.index[0]++;
 
-      var i = 0;
-      setInterval(function () {
-        _this.index[0] = i * _this.width;
-        ctx.clearRect(_this.position[0], _this.position[1], _this.width, _this.height);
-        ctx.drawImage(_this.src, _this.index[0], _this.index[1] * _this.height, _this.width, _this.height, _this.position[0], _this.position[1], _this.width, _this.height);
-        i++;
-
-        if (i === 3) {
-          i = 0;
-        }
-      }, 1000 / framerate);
-      return this;
-    }
-  }, {
-    key: "fly",
-    value: function fly(direction, distance, speed) {
-      var _this2 = this;
-
-      if (direction === 'left') {
-        this.index[1] = 0;
+      if (this.index[0] >= 3) {
+        this.index[0] = 0;
       }
 
-      if (direction === 'up') {
-        this.index[1] = 1;
-      }
-
-      if (direction === 'down') {
-        this.index[1] = 2;
-      }
-
-      if (direction === 'right') {
-        this.index[1] = 3;
-      }
-
-      setInterval(function () {
-        if (_this2.position[0] < distance[0]) {
-          _this2.position[0]++;
-        }
-
-        if (_this2.position[1] < distance[1]) {
-          _this2.position[1]++;
-        }
-      }, 1000 / speed);
       return this;
     }
   }]);
@@ -242,13 +204,13 @@ function () {
       return this;
     }
   }, {
-    key: "fillArea",
-    value: function fillArea(area) {
+    key: "fillCanvas",
+    value: function fillCanvas() {
       var x = 0;
       var y = 0;
 
-      while (y < area[1]) {
-        while (x < area[0]) {
+      while (y < canvas.height) {
+        while (x < canvas.width) {
           this.render([x, y]);
           x += this.size;
         }
@@ -263,20 +225,44 @@ function () {
 }();
 
 exports.default = _default;
-},{}],"bird_2_black.png":[function(require,module,exports) {
-module.exports = "/bird_2_black.c20070b1.png";
-},{}],"tileset_c_1.png":[function(require,module,exports) {
-module.exports = "/tileset_c_1.66b6eb86.png";
-},{}],"canvas.js":[function(require,module,exports) {
+},{}],"assets/bird_2_black.png":[function(require,module,exports) {
+module.exports = "/bird_2_black.8a14efe3.png";
+},{}],"assets/tileset_c_1.png":[function(require,module,exports) {
+module.exports = "/tileset_c_1.4349bddd.png";
+},{}],"assets/index.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+Object.defineProperty(exports, "blackBirdSpriteSheet", {
+  enumerable: true,
+  get: function () {
+    return _bird_2_black.default;
+  }
+});
+Object.defineProperty(exports, "backGroundTileSet", {
+  enumerable: true,
+  get: function () {
+    return _tileset_c_.default;
+  }
+});
+
+var _bird_2_black = _interopRequireDefault(require("./bird_2_black.png"));
+
+var _tileset_c_ = _interopRequireDefault(require("./tileset_c_1.png"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+},{"./bird_2_black.png":"assets/bird_2_black.png","./tileset_c_1.png":"assets/tileset_c_1.png"}],"canvas.js":[function(require,module,exports) {
 "use strict";
 
 var _Sprite = _interopRequireDefault(require("./Sprite.js"));
 
 var _Tile = _interopRequireDefault(require("./Tile.js"));
 
-var _bird_2_black = _interopRequireDefault(require("./bird_2_black.png"));
+var Assets = _interopRequireWildcard(require("./assets"));
 
-var _tileset_c_ = _interopRequireDefault(require("./tileset_c_1.png"));
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = Object.defineProperty && Object.getOwnPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : {}; if (desc.get || desc.set) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } } newObj.default = obj; return newObj; } }
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -285,16 +271,34 @@ var ctx = canvas.getContext('2d');
 canvas.width = 32 * 12;
 canvas.height = 32 * 8;
 var blackBirdImg = new Image();
-blackBirdImg.src = _bird_2_black.default;
+blackBirdImg.src = Assets.blackBirdSpriteSheet;
 var tileset = new Image();
-tileset.src = _tileset_c_.default;
+tileset.src = Assets.backGroundTileSet;
+var grass = new _Tile.default(tileset, [0, 0], 32);
+var bird = new _Sprite.default(blackBirdImg, 32, 32, [0, 0], 3, 8);
+var frameCount = 0;
 
-window.onload = function () {
-  var grass = new _Tile.default(tileset, [0, 0], 32);
-  grass.fillArea([canvas.width, canvas.height]);
-  var bird = new _Sprite.default(blackBirdImg, 32, 32, [0, 0], 3, 8); // bird.animate(5).fly('down', [100, 200], 5);
-};
-},{"./Sprite.js":"Sprite.js","./Tile.js":"Tile.js","./bird_2_black.png":"bird_2_black.png","./tileset_c_1.png":"tileset_c_1.png"}],"node_modules/parcel/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+function update() {
+  //need a loop that updates animation frames, movement, & redraws background
+  frameCount++;
+
+  if (frameCount < 15) {
+    window.requestAnimationFrame(update);
+    return;
+  }
+
+  frameCount = 0;
+  main();
+}
+
+function main() {
+  grass.fillCanvas();
+  bird.render();
+  update();
+}
+
+window.onload = main();
+},{"./Sprite.js":"Sprite.js","./Tile.js":"Tile.js","./assets":"assets/index.js"}],"node_modules/parcel/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;
