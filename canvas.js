@@ -43,7 +43,7 @@ window.onload = function () {
             }, 1000 / framerate);
         }
 
-        fly(direction,distance) {
+        fly(direction,distance,speed) {
             if (direction === 'left') {
                 this.index[1] = 0;
             }
@@ -59,11 +59,14 @@ window.onload = function () {
 
             setInterval(
                 ()=>{
-                    if(this.position[1] < distance) {
+                    if(this.position[0] < distance[0]){
+                        this.position[0]++;
+                    }
+                    if(this.position[1] < distance[1]) {
                         this.position[1] ++;
                         console.log(this.position)
                     }
-                }, 1000
+                }, 1000 / speed
             )
 
         }
@@ -73,5 +76,5 @@ window.onload = function () {
     var bird = new Sprite(blackBirdImg, 32, 32, [0, 0], 3, 8);
 
     bird.animate(5);
-    bird.fly('down', 20);
+    bird.fly('down', [10,20], 2);
 }
