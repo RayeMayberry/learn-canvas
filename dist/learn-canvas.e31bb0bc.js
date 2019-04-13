@@ -118,7 +118,31 @@ parcelRequire = (function (modules, cache, entry, globalName) {
 
   return newRequire;
 })({"index.js":[function(require,module,exports) {
+window.onload = function () {
+  var canvas = document.querySelector('#canvas');
+  var ctx = canvas.getContext('2d');
+  canvas.width = 400;
+  canvas.height = 300;
+  var blackBirdImg = new Image();
+  blackBirdImg.src = './bird_2_black.png'; // sprite width & height can also be used to iterate thru the spritesheet
 
+  var width = 32;
+  var height = 32;
+  var scale = 1.5; // cx & cy = context x & y coordinates
+
+  var cx = canvas.width - width * scale;
+  var cy = 0; // sx & sy = sprite x & y coordinates
+
+  var sx = 0;
+  var sy = 0;
+
+  blackBirdImg.onload = function () {
+    for (i = 0; i < 3; i++) {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      ctx.drawImage(blackBirdImg, i * width, sy, width, height, cx, cy, width * scale, height * scale);
+    }
+  };
+};
 },{}],"node_modules/parcel/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
