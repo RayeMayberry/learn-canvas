@@ -18,10 +18,17 @@ window.onload = function(){
     
     
     blackBirdImg.onload = function() {
-        for(i = 0; i < 3; i++){
+        let i = 0;
+        setInterval(()=>{
+            
+            sx = i * width;
             ctx.clearRect(0, 0, canvas.width, canvas.height);
-            ctx.drawImage(blackBirdImg, i * width, sy, width, height, cx, cy, width*scale,height*scale);
-        }
+            ctx.drawImage(blackBirdImg, sx, sy, width, height, cx, cy, width*scale, height*scale);
+            i++;
+            if(i === 3){
+                i = 0;
+            }
+        }, 200);
         
     }
 }
