@@ -1,9 +1,10 @@
 window.onload = function(){
-    var canvas = document.querySelector('#canvas');
-    var context = canvas.getContext('2d');
-    canvas.width = 300;
-    canvas.height = 400;
-    var sprite = new Image();
+    const canvas = document.querySelector('#canvas');
+    const ctx = canvas.getContext('2d');
+    canvas.width = 400;
+    canvas.height = 300;
+    const blackBirdImg = new Image();
+    blackBirdImg.src = './bird_2_black.png';
     // cx & cy = context x & y coordinates
     var cx = 0;
     var cy = 0;
@@ -11,12 +12,9 @@ window.onload = function(){
     var sx = 0;
     var sy = 0;
     // sw & sh = sprite width = height;
-    var sw = 32;
-    var sh = 32;
-
-    sprite.onload = function() {
-        context.drawImage(sprite, sx, sy, sw, sh, cx, cy, 32,32);
+    const width = 32;
+    const height = 32;
+    blackBirdImg.onload = function() {
+        ctx.drawImage(blackBirdImg, sx, sy, width, height, cx, cy, 32,32);
     }
-
-    sprite.src = './bird_2_black.png';
 }

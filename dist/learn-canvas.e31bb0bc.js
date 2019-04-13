@@ -133,12 +133,11 @@ window.onload = function () {
 
   var sw = 32;
   var sh = 32;
+  sprite.src = './bird_2_black.png';
 
   sprite.onload = function () {
     context.drawImage(sprite, sx, sy, sw, sh, cx, cy, 32, 32);
   };
-
-  sprite.src = './bird_2_black.png';
 };
 },{}],"../../AppData/Roaming/npm-cache/_npx/2404/node_modules/parcel/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
